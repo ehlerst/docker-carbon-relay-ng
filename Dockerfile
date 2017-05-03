@@ -1,11 +1,13 @@
-FROM busybox:ubuntu-14.04
-MAINTAINER Yasser Nabi "yassersaleemi@gmail.com"
-EXPOSE 2003 2004 8081
+FROM alpine:3.5
+MAINTAINER Tim Ehlers "ehlerst@gmail.com"
+EXPOSE 2003 2004 2014 8081
+
+RUN apk add --no-cache gawk
 
 RUN mkdir /carbon_spool
 
 ADD ./carbon-relay-ng.ini /carbon-relay-ng.ini
-ADD ./carbon-relay-ng_sha9d6e319 /carbon-relay-ng
+ADD ./carbon-relay-ng /carbon-relay-ng
 ADD ./start.sh /start.sh
 
 ENTRYPOINT /start.sh
